@@ -4,7 +4,11 @@ import { Inter } from "next/font/google";
 import React from "react";
 import StoreProvider from "@/app/StoreProvider";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-import {CssBaseline, ThemeProvider} from "@mui/material";
+import {
+  Container,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
 import theme from "@/theme";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,7 +34,9 @@ export default function RootLayout({
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              {children}
+              <Container maxWidth="lg">
+                {children}
+              </Container>
             </ThemeProvider>
           </AppRouterCacheProvider>
         </body>

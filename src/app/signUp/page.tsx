@@ -2,10 +2,10 @@
 
 import {useSignUpMutation} from "@/lib/services/auth";
 import Button from "@mui/material/Button";
-import {Alert, Box, CircularProgress, Container, Typography} from "@mui/material";
+import {Alert, Box, CircularProgress, Typography} from "@mui/material";
 import { useForm } from "react-hook-form";
 import {FORM_FIELDS, validationSchema} from "@/app/signUp/form";
-import {TextInput} from "@/components/TextInput";
+import {TextInput} from "@/components/TextInput/TextInput";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 export default function SignUp() {
@@ -22,26 +22,24 @@ export default function SignUp() {
   });
 
   return (
-    <Container maxWidth="lg">
-      <Box
-        sx={{
-          my: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        { isLoading ? <CircularProgress /> : null }
-        { isError ? <Alert severity="error">Error occurred</Alert> : null }
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>Sign Up</Typography>
+    <Box
+      sx={{
+        my: 4,
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      { isLoading ? <CircularProgress /> : null }
+      { isError ? <Alert severity="error">Error occurred</Alert> : null }
+      <Typography variant="h4" component="h1" sx={{ mb: 2 }}>Sign Up</Typography>
 
-        <TextInput name={FORM_FIELDS.email} label="Email" control={control} />
-        <TextInput name={FORM_FIELDS.password} label="Password" control={control} isPassword />
-        <TextInput name={FORM_FIELDS.password2} label="Re-enter Password" control={control} isPassword />
+      <TextInput name={FORM_FIELDS.email} label="Email" control={control} />
+      <TextInput name={FORM_FIELDS.password} label="Password" control={control} isPassword />
+      <TextInput name={FORM_FIELDS.password2} label="Re-enter Password" control={control} isPassword />
 
-        <Button variant="contained" onClick={onSubmit} disabled={!isValid}>Sign Up</Button>
-      </Box>
-    </Container>
+      <Button variant="contained" onClick={onSubmit} disabled={!isValid}>Sign Up</Button>
+    </Box>
   );
 }
